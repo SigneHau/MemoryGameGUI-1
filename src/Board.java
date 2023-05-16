@@ -11,9 +11,12 @@ public class Board extends JPanel {
     private List<Card> cards;
     private JButton[][] cardButtons;
     private Card flippedCard = null; // Holder styr på de kort, der er blevet vendt
+    private long start; //Tidspunktet, hvor spillet starter
 
     public Board() {
+start = System.currentTimeMillis(); //gem starttidspunktet
         setLayout(new GridLayout(4, 3));
+
 
         cards = new ArrayList<>();
         cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\lion.jpg", "lion"));
@@ -82,7 +85,7 @@ public class Board extends JPanel {
 
             if (card.getDescription().equals(flippedCard.getDescription())) {
                 // Kortene matcher
-                JOptionPane.showMessageDialog(null, "Du har fundet et par!");
+               // JOptionPane.showMessageDialog(null, "Du har fundet et par!");
                 flippedCard = null; // Nulstil flippedCard
             } else {
                 // Kortene matcher ikke
@@ -94,6 +97,21 @@ public class Board extends JPanel {
         }
 
         updateBoard();
+
+        //Kontroller om alle par er fundet
+        int pairsFound = 0;
+        for (Card c : cards) {
+            if(c.cardFlipped){
+                pairsFound++;
+            }
+        }
+        int requiredPairs = 12; //Dette nummer kan ændres, hvis man skal have flere eller færre stik for at vinde spillet.
+        if(pairsFound == requiredPairs){
+            //Alle par er fundet, det ønskede antal af stik er opnået.
+            long finish = System.currentTimeMillis();
+            long timeElapsed = (finish - start) / 1000;
+            JOptionPane.showMessageDialog(null, "Congratulations, you won!\nTime elapsed: " + timeElapsed + " seconds");
+        }
     }
 
     private void updateBoard() {
