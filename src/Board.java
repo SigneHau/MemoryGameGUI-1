@@ -89,7 +89,7 @@ start = System.currentTimeMillis(); //gem starttidspunktet
                 flippedCard = null; // Nulstil flippedCard
             } else {
                 // Kortene matcher ikke
-                JOptionPane.showMessageDialog(null, "Beklager, de kort matcher ikke.");
+                JOptionPane.showMessageDialog(null, "Beklager, kortene matcher ikke.");
                 card.cardFlipped = false;
                 flippedCard.cardFlipped = false;
                 flippedCard = null; // Nulstil flippedCard
@@ -110,7 +110,8 @@ start = System.currentTimeMillis(); //gem starttidspunktet
             //Alle par er fundet, det ønskede antal af stik er opnået.
             long finish = System.currentTimeMillis();
             long timeElapsed = (finish - start) / 1000;
-            JOptionPane.showMessageDialog(null, "Congratulations, you won!\nTime elapsed: " + timeElapsed + " seconds");
+            JOptionPane.showMessageDialog(null,"Tillykke, du vandt! \n Din tid: " + timeElapsed + " sekunder!");
+            //JOptionPane.showMessageDialog(null, "Congratulations, you won!\n Your time: " + timeElapsed + " seconds");
         }
     }
 
