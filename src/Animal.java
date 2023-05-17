@@ -6,36 +6,36 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Board extends JPanel {
+public class Animal extends JPanel {
 
     private List<Card> cards;
     private JButton[][] cardButtons;
     private Card flippedCard = null; // Holder styr på de kort, der er blevet vendt
     private long start; //Tidspunktet, hvor spillet starter
 
-    public Board() {
-start = System.currentTimeMillis(); //gem starttidspunktet
+    public Animal() {
+        start = System.currentTimeMillis(); //gem starttidspunktet
         setLayout(new GridLayout(4, 3));
 
 
         cards = new ArrayList<>();
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\lion.jpg", "lion"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\lion.jpg", "lion"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\pig.jpg", "pig"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\pig.jpg", "pig"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\sheep.jpg", "Sheep"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\sheep.jpg", "Sheep"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\dog.jpg", "dogs"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\dog.jpg", "dogs"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\cat.jpg", "cat"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\cat.jpg", "cat"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\cow.jpg", "cow"));
-        cards.add(new Card("C:\\Users\\Ingrid\\Desktop\\untitled1\\cow.jpg", "cow"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\lion.jpg", "lion"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\lion.jpg", "lion"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\pig.jpg", "pig"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\pig.jpg", "pig"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\sheep.jpg", "Sheep"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\sheep.jpg", "Sheep"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\dog.jpg", "dogs"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\dog.jpg", "dogs"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\cat.jpg", "cat"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\cat.jpg", "cat"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\cow.jpg", "cow"));
+        cards.add(new Card("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\cow.jpg", "cow"));
 
         // Shuffle cards
         Collections.shuffle(cards);
 
-        ImageIcon cardback = new ImageIcon("C:\\Users\\Ingrid\\Desktop\\untitled1\\download_4.jpg");
+        ImageIcon cardback = new ImageIcon("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\download_4.jpg");
 
         cardButtons = new JButton[4][3];
         for (int i = 0; i < cardButtons.length; i++) {
@@ -85,7 +85,7 @@ start = System.currentTimeMillis(); //gem starttidspunktet
 
             if (card.getDescription().equals(flippedCard.getDescription())) {
                 // Kortene matcher
-               // JOptionPane.showMessageDialog(null, "Du har fundet et par!");
+                // JOptionPane.showMessageDialog(null, "Du har fundet et par!");
                 flippedCard = null; // Nulstil flippedCard
             } else {
                 // Kortene matcher ikke
@@ -101,16 +101,16 @@ start = System.currentTimeMillis(); //gem starttidspunktet
         //Kontroller om alle par er fundet
         int pairsFound = 0;
         for (Card c : cards) {
-            if(c.cardFlipped){
+            if (c.cardFlipped) {
                 pairsFound++;
             }
         }
         int requiredPairs = 12; //Dette nummer kan ændres, hvis man skal have flere eller færre stik for at vinde spillet.
-        if(pairsFound == requiredPairs){
+        if (pairsFound == requiredPairs) {
             //Alle par er fundet, det ønskede antal af stik er opnået.
             long finish = System.currentTimeMillis();
             long timeElapsed = (finish - start) / 1000;
-            JOptionPane.showMessageDialog(null,"Tillykke, du vandt! \n Din tid: " + timeElapsed + " sekunder!");
+            JOptionPane.showMessageDialog(null, "Tillykke, du vandt! \n Din tid: " + timeElapsed + " sekunder!");
             //JOptionPane.showMessageDialog(null, "Congratulations, you won!\n Your time: " + timeElapsed + " seconds");
         }
     }
@@ -121,18 +121,20 @@ start = System.currentTimeMillis(); //gem starttidspunktet
             if (cards.get(i).cardFlipped) {
                 button.setIcon(new ImageIcon(cards.get(i).getPicture()));
             } else {
-                button.setIcon(new ImageIcon("C:\\Users\\Ingrid\\Desktop\\untitled1\\download_4.jpg"));
+                button.setIcon(new ImageIcon("C:\\Users\\signe\\IdeaProjects\\MemoryGameGUI\\download_4.jpg"));
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Memory Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 400);
+            frame.setResizable(true);
 
-            Board board = new Board();
-            frame.add(board);
+            Animal animal = new Animal();
+            frame.add(animal);
 
             frame.pack();
             frame.setLocationRelativeTo(null);
@@ -140,3 +142,4 @@ start = System.currentTimeMillis(); //gem starttidspunktet
         });
     }
 }
+

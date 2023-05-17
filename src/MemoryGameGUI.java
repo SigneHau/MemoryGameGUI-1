@@ -1,15 +1,16 @@
-import javax.swing.*;
+/*import javax.swing.*;
 
 public class MemoryGameGUI extends JFrame {
 
-    private Board board;
+    private Animal board;
 
     public MemoryGameGUI() {
         setTitle("Memory Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        board = new Board();
+        board = new Animal();
         add(board);
+
 
         pack();
         setLocationRelativeTo(null);
@@ -23,3 +24,4 @@ public class MemoryGameGUI extends JFrame {
         });
     }
 }
+*/
